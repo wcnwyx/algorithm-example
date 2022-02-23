@@ -102,10 +102,10 @@ public class HalfSearch {
                 return middle;
             }else if(array[middle-1]>array[middle] && array[middle]>array[middle+1]){
                 //middle-1 到 middle位置已经开始下降了
-                right = middle - 1;
+                right = middle;
             }else if(array[middle-1]<array[middle] && array[middle]<array[middle+1]){
                 //middle-1 middle middle+1位置还在上升
-                left = middle + 1;
+                left = middle;
             }
         }
         return middle;
