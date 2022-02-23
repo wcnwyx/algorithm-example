@@ -31,7 +31,7 @@ public class Partitions {
             }else if(array[index]>num){
                 swap(array, index, more);
                 more--;
-                //这里index不能加
+                //这里index不能加，因为从右侧more换到该index的数据还未处理
             }else{
                 index++;
             }
