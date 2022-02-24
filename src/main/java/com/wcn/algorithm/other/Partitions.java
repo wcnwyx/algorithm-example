@@ -10,19 +10,29 @@ package com.wcn.algorithm.other;
 public class Partitions {
     public static void main(String[] args) {
         int[] array = new int[]{9,4,5,3,4,2,6,1,4,8,10,1,2};
-        process(array, 4);
+        int[] result = process(array, 0, array.length-1, 4);
         for(int i:array){
             System.out.print(i+" ");
         }
+        System.out.println();
+        for(int i:result){
+            System.out.println("result:"+i);
+        }
     }
 
-    public static void process(int[] array, int num){
+    /**
+     * 返回值为等于num的数据开始索引和结束索引
+     * @param array
+     * @param num
+     * @return
+     */
+    public static int[] process(int[] array, int left, int right, int num){
         if(array==null || array.length==1){
-            return ;
+            return new int[]{-1,-1};
         }
-        int less = 0;//小于部分的后一个数据索引
-        int more = array.length-1;//大于部分的前一个数据索引
-        int index = 0;//当前处理数据的索引
+        int less = left;//小于部分的后一个数据索引
+        int more = right;//大于部分的前一个数据索引
+        int index = less;//当前处理数据的索引
         while(index<=more){
             if(array[index]<num){
                 swap(array, index, less);
@@ -36,6 +46,7 @@ public class Partitions {
                 index++;
             }
         }
+        return new int[]{less, more};
     }
 
     public static void swap(int[] array, int i, int j){
