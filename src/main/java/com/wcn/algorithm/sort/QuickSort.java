@@ -26,6 +26,7 @@ public class QuickSort {
 
     /**
      * 快速排序1：利用分区逻辑递归，先分一次，再左边分+右边分，再次递归循环
+     * 差情况是每次right位置都是最大的，效率就很低
      * @param array
      * @param left
      * @param right
