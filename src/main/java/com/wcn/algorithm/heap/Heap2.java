@@ -96,6 +96,7 @@ public class Heap2<V> {
         if(index==null){
             return false;
         }
+        //要不heapInsert导致往上移动，要不heapify导致往下沉，不要不用动，只会处理一种逻辑
         heapInsert(index);
         heapify(index);
         return true;
