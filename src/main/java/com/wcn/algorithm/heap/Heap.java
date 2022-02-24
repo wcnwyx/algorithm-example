@@ -2,6 +2,7 @@ package com.wcn.algorithm.heap;
 
 /**
  * 堆（大根堆）
+ * PriorityQueue内部使用的及时堆结构
  */
 public class Heap {
     public static void main(String[] args) {
