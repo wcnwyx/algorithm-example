@@ -21,14 +21,14 @@ public class CheckCircle {
         node5.next = node6;
         node6.next = node7;
 
-        System.out.println("Hash无回文结构："+checkHash(node1));
+        System.out.println("Hash无环结构："+checkHash(node1));
         node7.next = node4;
-        System.out.println("Hash有回文结构："+checkHash(node1));
+        System.out.println("Hash有环结构："+checkHash(node1));
 
         node7.next = null;
-        System.out.println("FastSlowPoint无回文结构："+checkFastSlowPoint(node1));
+        System.out.println("FastSlowPoint无环结构："+checkFastSlowPoint(node1));
         node7.next = node4;
-        System.out.println("FastSlowPoint有回文结构："+checkFastSlowPoint(node1));
+        System.out.println("FastSlowPoint有环结构："+checkFastSlowPoint(node1));
     }
     static class Node{
         public int value;
