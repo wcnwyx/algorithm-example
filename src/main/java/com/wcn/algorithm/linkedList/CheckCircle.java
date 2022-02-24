@@ -3,7 +3,7 @@ package com.wcn.algorithm.linkedList;
 import java.util.HashSet;
 
 /**
- * 给定一个单链表的头节点head，判断该链表是否为回文结构（是否又环）
+ * 给定一个单链表的头节点head，判断该链表是否有环
  */
 public class CheckCircle {
     public static void main(String[] args) {
@@ -71,6 +71,7 @@ public class CheckCircle {
         Node fast = head.next;
         while(fast.next!=null && fast.next.next!=null){
             if(slow.equals(fast)){
+                //快指针又追上了慢指针，说明有环
                 return true;
             }
             slow = slow.next;
