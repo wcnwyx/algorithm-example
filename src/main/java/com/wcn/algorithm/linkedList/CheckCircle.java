@@ -3,7 +3,10 @@ package com.wcn.algorithm.linkedList;
 import java.util.HashSet;
 
 /**
- * 给定一个单链表的头节点head，判断该链表是否有环
+ * 给定一个单链表的头节点head，判断该链表是否有环。
+ *
+ * 不考虑额外空间复杂度，用一个HashSet即可，依次循环节点，先去hashSet中校验是否已经放过了该节点，如果咩有则放到hashSet中，
+ * 额外空间复杂度为O(1)的话就是用快慢指针
  */
 public class CheckCircle {
     public static void main(String[] args) {
