@@ -1,5 +1,7 @@
 package com.wcn.algorithm.linkedList;
 
+import java.util.Stack;
+
 /**
  * 检查单向链表是否是回文结构（是否是对称的）
  * 比如这两种都是回文结构： 1-2-3-2-1   1-2-3-3-2-1
@@ -16,10 +18,14 @@ public class CheckPalindrome {
         node2.next = node3;
         node3.next = node22;
         node22.next = node11;
-        System.out.println("(奇数节点个数）不是回文结构:"+checkFastSlowPointer(node1));
+        System.out.println("(奇数节点个数）(stack)不是回文结构:"+checkStack(node1));
+        System.out.println("(奇数节点个数）(快慢指针-jvmStack)不是回文结构:"+checkFastSlowPointer(node1));
+        System.out.println();
 
         node11.value = 1;
-        System.out.println("(奇数节点个数）是回文结构:"+checkFastSlowPointer(node1));
+        System.out.println("(奇数节点个数）(stack)是回文结构:"+checkStack(node1));
+        System.out.println("(奇数节点个数）(快慢指针-jvmStack)是回文结构:"+checkFastSlowPointer(node1));
+        System.out.println();
 
 
         //测试偶数个节点
@@ -34,10 +40,13 @@ public class CheckPalindrome {
         node3.next = node33;
         node33.next = node22;
         node22.next = node11;
-        System.out.println("(偶数节点个数）不是回文结构:"+checkFastSlowPointer(node1));
+        System.out.println("(偶数节点个数）(stack)不是回文结构:"+checkStack(node1));
+        System.out.println("(偶数节点个数）(快慢指针-jvmStack)不是回文结构:"+checkFastSlowPointer(node1));
+        System.out.println();
 
         node11.value = 1;
-        System.out.println("(偶数节点个数）是回文结构:"+checkFastSlowPointer(node1));
+        System.out.println("(偶数节点个数）(stack)是回文结构:"+checkStack(node1));
+        System.out.println("(偶数节点个数）(快慢指针-jvmStack)是回文结构:"+checkFastSlowPointer(node1));
 
     }
 
@@ -51,8 +60,34 @@ public class CheckPalindrome {
     }
 
     /**
+     * 放入栈中，栈再依次pos。正序遍历和逆序遍历对比
+     * @param head
+     * @return
+     */
+    public static boolean checkStack(Node head){
+        Stack<Node> stack = new Stack<>();
+        Node temp = head;
+        while(temp!=null){
+            stack.push(temp);
+            temp = temp.next;
+        }
+
+        temp = head;
+        while(temp!=null){
+            if(temp.value!=stack.pop().value){
+                return false;
+            }
+            temp = temp.next;
+        }
+        return true;
+    }
+
+    /**
      * 采用快慢指针方案 时间复杂度O(N)，额外空间复杂度O(1)
-     * 基数个节点慢指针找到中间节点，偶数个节点慢指针找到上中点
+     * 基数个节点慢指针找到中间节点，偶数个节点慢指针找到上中点。
+     * 找中点的位置时，采用递归（也就用到了栈结构，只不过是jvm栈），然后jvm栈从中点依次往前退，slow指针再依次往后走，再一一比对。
+     *
+     * 也可以找到中点后，将后面的节点链表倒叙了，然后相当于1->2->3<-2<-1，再分别从头和尾遍历比较
      * @param head
      * @return
      */
