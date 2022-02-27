@@ -27,21 +27,28 @@ public class DeepScan {
         node0R.left = node0RL;
         node0R.right = node0RR;
 
-        System.out.print("递归先序:");
+        System.out.print("  递归先序:");
         scan(node0, Type.before);
         System.out.println();
 
-        System.out.print("递归中序:");
+        System.out.print("  递归中序:");
         scan(node0, Type.middle);
         System.out.println();
 
-        System.out.print("递归后序:");
+        System.out.print("  递归后序:");
         scan(node0, Type.after);
         System.out.println();
 
         System.out.print("stack先序:");
         scanStackBefore(node0);
+        System.out.println();
 
+        System.out.print("stack中序:");
+        scanStackMiddle(node0);
+        System.out.println();
+
+        System.out.print("stack后序:");
+        scanStackAfter(node0);
     }
 
     enum Type{
@@ -87,6 +94,8 @@ public class DeepScan {
 
     /**
      * 非递归实现 先序
+     * 1. 弹出再处理（打印）
+     * 2. 先压如右子节点，再压入左子节点
      * @param head
      */
     public static void scanStackBefore(Node head){
@@ -101,6 +110,53 @@ public class DeepScan {
             }
             if(node.left!=null){
                 stack.push(node.left);
+            }
+        }
+    }
+
+    /**
+     * 非递归实现后续
+     * 1. 弹出再处理（压入另一个栈）
+     * 2. 先压入左子节点，再压入右子节点
+     * 3. 再从第二个栈中弹出处理即可
+     * @param head
+     */
+    public static void scanStackAfter(Node head){
+        Stack<Node> stack1 = new Stack<>();
+        Stack<Node> stack2 = new Stack<>();
+        stack1.push(head);
+        while(!stack1.isEmpty()){
+            Node node = stack1.pop();
+            stack2.push(node);
+            //先压入左再压入右
+            if(node.left!=null){
+                stack1.push(node.left);
+            }
+            if(node.right!=null){
+                stack1.push(node.right);
+            }
+        }
+        while(!stack2.isEmpty()){
+            System.out.print(stack2.pop().value+" ");
+        }
+    }
+
+    /**
+     * 中序遍历
+     * 1. 根节点的整条左边界依次入栈
+     * 2. 弹出一个节点并处理，然后再将该节点的右子节点当作跟再循环1步骤
+     * @param head
+     */
+    public static void scanStackMiddle(Node head){
+        Stack<Node> stack = new Stack<>();
+        while(!stack.isEmpty() || head!=null){
+            if(head!=null){
+                stack.push(head);
+                head = head.left;
+            }else{
+                head = stack.pop();
+                System.out.print(head.value+" ");
+                head = head.right;
             }
         }
     }
