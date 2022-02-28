@@ -29,16 +29,10 @@ public class CheckBalance {
         }
         Result leftResult = process(node.left);
         Result rightResult = process(node.right);
-        if(leftResult.isBalance && rightResult.isBalance){
-            if(Math.abs(leftResult.high- rightResult.high)>1){
-                //高度差大于1，不是平衡树
-                return new Result(false, 0);//不是平衡树的情况下，高度就没有意义了
-            }else{
-                return new Result(true, Math.max(leftResult.high, rightResult.high)+1);
-            }
-        }else{
-            return new Result(false, 0);//不是平衡树的情况下，高度就没有意义了
-        }
+
+        int high = Math.max(leftResult.high, rightResult.high)+1;
+        boolean isBalance = leftResult.isBalance && rightResult.isBalance && Math.abs(leftResult.high- rightResult.high)<=1;
+        return new Result(isBalance, high);
     }
 
 
