@@ -45,11 +45,11 @@ public class WideScan {
      * 宽度遍历
      * 1.利用队列先进先出
      * 2. head先入队，poll一个节点就处理（打印），有左子节点则入队，有右子节点则入队
-     * @param head
+     * @param root
      */
-    public static void scan(Node head){
+    public static void scan(Node root){
         LinkedBlockingQueue<Node> queue = new LinkedBlockingQueue();
-        queue.offer(head);
+        queue.offer(root);
         while(!queue.isEmpty()){
             Node node = queue.poll();
             System.out.print(node.value+" ");
@@ -64,11 +64,11 @@ public class WideScan {
 
     /**
      * 计算树的最多节点那一层的节点数
-     * @param head
+     * @param root
      */
-    public static int wideMax(Node head){
+    public static int wideMax(Node root){
         LinkedBlockingQueue<Node> queue = new LinkedBlockingQueue();
-        queue.offer(head);
+        queue.offer(root);
         int max = 1;
         int curLevelNodeNum = 1;
         int curLevelNodeIndex = 0;
