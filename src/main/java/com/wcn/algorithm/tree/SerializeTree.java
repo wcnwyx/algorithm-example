@@ -12,8 +12,10 @@ public class SerializeTree {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
+        Node node4 = new Node(4);
         node1.left = node2;
         node2.right = node3;
+        node3.left = node4;
 
         Queue<Integer> queue = serializeBefore(node1);
         while(!queue.isEmpty()){
