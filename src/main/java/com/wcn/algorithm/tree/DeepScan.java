@@ -95,7 +95,7 @@ public class DeepScan {
     /**
      * 非递归实现 先序
      * 1. 弹出再处理（打印）
-     * 2. 先压如右子节点，再压入左子节点
+     * 2. 先压入右子节点，再压入左子节点
      * @param root
      */
     public static void scanStackBefore(Node root){
