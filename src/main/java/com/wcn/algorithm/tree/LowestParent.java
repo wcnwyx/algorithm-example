@@ -6,22 +6,22 @@ package com.wcn.algorithm.tree;
 public class LowestParent {
     public static void main(String[] args) {
         Node node1 = new Node(1);
-        System.out.println("1 "+get(node1, node1, node1).value);
+        System.out.println("1 "+ getLoop(node1, node1, node1).value);
 
         Node node2 = new Node(2);
         Node node3 = new Node(3);
         node1.left = node2;
         node1.right = node3;
-        System.out.println("1 "+get(node1, node2, node3).value);
+        System.out.println("1 "+ getLoop(node1, node2, node3).value);
 
         Node node21 = new Node(21);
         Node node22 = new Node(22);
         node2.left = node21;
         node2.right = node22;
-        System.out.println("2 "+get(node1, node21, node22).value);
-        System.out.println("2 "+get(node1, node2, node22).value);
-        System.out.println("1 "+get(node1, node3, node22).value);
-        System.out.println("1 "+get(node1, node1, node22).value);
+        System.out.println("2 "+ getLoop(node1, node21, node22).value);
+        System.out.println("2 "+ getLoop(node1, node2, node22).value);
+        System.out.println("1 "+ getLoop(node1, node3, node22).value);
+        System.out.println("1 "+ getLoop(node1, node1, node22).value);
     }
 
     static class Node{
@@ -34,7 +34,24 @@ public class LowestParent {
         }
     }
 
+
     public static Node get(Node root, Node node1, Node node2){
+        /**
+         * 1:从root遍历，构建map<node, parentNode>
+         * 2:将node1及其所有父节点放到HashSet中
+         * 3：循环node2及其所有父节点，从2步骤中的HashSet中找是否有，第一个找到的就是最低公共祖先
+         */
+        return null;
+    }
+
+    /**
+     * 递归实现
+     * @param root
+     * @param node1
+     * @param node2
+     * @return
+     */
+    public static Node getLoop(Node root, Node node1, Node node2){
         Result result = process(root, node1, node2);
         return result.ret;
     }
