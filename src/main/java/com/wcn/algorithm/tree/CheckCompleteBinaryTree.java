@@ -26,6 +26,22 @@ public class CheckCompleteBinaryTree {
         Node node3 = new Node(3);
         node1.right = node3;
         System.out.println(check(node1)+"  "+checkLoop(node1));
+
+        Node node21 = new Node(21);
+        node2.left = node21;
+        System.out.println(check(node1)+"  "+checkLoop(node1));
+
+        Node node22 = new Node(22);
+        node2.right = node22;
+        System.out.println(check(node1)+"  "+checkLoop(node1));
+
+        Node node31 = new Node(31);
+        node3.left = node31;
+        System.out.println(check(node1)+"  "+checkLoop(node1));
+
+        Node node32 = new Node(32);
+        node3.right = node32;
+        System.out.println(check(node1)+"  "+checkLoop(node1));
     }
 
     static class Node{
@@ -83,8 +99,8 @@ public class CheckCompleteBinaryTree {
         int height = Math.max(leftResult.height, rightResult.height) + 1;
         boolean isFBT = false;
         boolean isCBT = false;
-        if(leftResult.isFBT && rightResult.isFBT && leftResult.height== rightResult.height){
-            //子树都是满二叉树，且高度一样，则该节点的树肯定是满二叉树
+        if(leftResult.isFBT && rightResult.isFBT && (leftResult.height== rightResult.height || leftResult.height-rightResult.height==1)){
+            //子树都是满二叉树，且(高度一样或左比右高1)，则该节点的树肯定是满二叉树
             isFBT = true;
             isCBT = true;
         }else if(leftResult.isFBT && rightResult.isCBT && leftResult.height==rightResult.height){
