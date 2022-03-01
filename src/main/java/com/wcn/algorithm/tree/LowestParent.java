@@ -1,27 +1,30 @@
 package com.wcn.algorithm.tree;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * 二叉树，给定任意两个节点，找到最低的公共祖先
  */
 public class LowestParent {
     public static void main(String[] args) {
         Node node1 = new Node(1);
-        System.out.println("1 "+ getLoop(node1, node1, node1).value);
+        System.out.println("1 "+ getLoop(node1, node1, node1).value+ " "+get(node1, node1, node1).value);
 
         Node node2 = new Node(2);
         Node node3 = new Node(3);
         node1.left = node2;
         node1.right = node3;
-        System.out.println("1 "+ getLoop(node1, node2, node3).value);
+        System.out.println("1 "+ getLoop(node1, node2, node3).value+" "+ get(node1, node2, node3).value);
 
         Node node21 = new Node(21);
         Node node22 = new Node(22);
         node2.left = node21;
         node2.right = node22;
-        System.out.println("2 "+ getLoop(node1, node21, node22).value);
-        System.out.println("2 "+ getLoop(node1, node2, node22).value);
-        System.out.println("1 "+ getLoop(node1, node3, node22).value);
-        System.out.println("1 "+ getLoop(node1, node1, node22).value);
+        System.out.println("2 "+ getLoop(node1, node21, node22).value+" "+ get(node1, node21, node22).value);
+        System.out.println("2 "+ getLoop(node1, node2, node22).value+" "+ get(node1, node2, node22).value);
+        System.out.println("1 "+ getLoop(node1, node3, node22).value+" "+ get(node1, node3, node22).value);
+        System.out.println("1 "+ getLoop(node1, node1, node22).value+" "+ get(node1, node1, node22).value);
     }
 
     static class Node{
@@ -41,7 +44,39 @@ public class LowestParent {
          * 2:将node1及其所有父节点放到HashSet中
          * 3：循环node2及其所有父节点，从2步骤中的HashSet中找是否有，第一个找到的就是最低公共祖先
          */
+        HashMap<Node,Node> parentMap = new HashMap<>();
+        buildParentMap(root, parentMap);
+
+        HashSet<Node> set = new HashSet<>();
+        Node temp = node1;
+        while(temp!=null){
+            set.add(temp);
+            temp = parentMap.get(temp);
+        }
+
+        temp = node2;
+        while(temp!=null){
+            if (set.contains(temp)) {
+                return temp;
+            }
+            temp = parentMap.get(temp);
+        }
+
         return null;
+    }
+
+    public static void buildParentMap(Node node, HashMap<Node, Node> map){
+        if(node==null){
+            return ;
+        }
+        if(node.left!=null){
+            map.put(node.left, node);
+            buildParentMap(node.left, map);
+        }
+        if(node.right!=null){
+            map.put(node.right, node);
+            buildParentMap(node.right, map);
+        }
     }
 
     /**
