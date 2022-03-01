@@ -8,7 +8,7 @@ package com.wcn.algorithm.tree;
  *
  * 递归思路：每个节点，都给左右子树要信息（是否平衡、最大高度），如果左右子树都是平衡树，而且最大高度差1，那该节点为根的树也是平衡树
  */
-public class CheckBalance {
+public class CheckBalanceTree {
     static class Node{
         public int value;
         public Node left;

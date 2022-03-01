@@ -1,3 +1,8 @@
+###树的类型：
+1. Binary Tree 二叉树
+2. Full Binary Tree （FBT） 满二叉树
+3. Binary Search Tree(BST) 二叉搜索树
+
 ###前缀树（用于完成前缀相关的查询）
 1. 单个字符串中，字符从前到后的添加到一棵多叉树上
 2. 字符放在路径上，节点上有专属的数据项（常见的是pass和end值）

@@ -10,7 +10,7 @@ package com.wcn.algorithm.tree;
  *
  * 链接：https://leetcode-cn.com/problems/validate-binary-search-tree
  */
-public class CheckBST {
+public class CheckBinarySearchTree {
     static class TreeNode {
         int val;
         TreeNode left;
