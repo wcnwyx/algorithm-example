@@ -46,4 +46,20 @@ public class Graph {
             toNode.in++;
         }
     }
+
+    public void deleteNode(GraphNode node){
+        //节点从图中删除
+        nodes.remove(node.value);
+
+        for(GraphEdge edge:node.edges){
+            //边从图中删除
+            edges.remove(edge);
+        }
+
+        for(GraphNode e:node.nexts){
+            //该节点的下一个节点入度全部减1
+            e.in--;
+        }
+        return ;
+    }
 }
