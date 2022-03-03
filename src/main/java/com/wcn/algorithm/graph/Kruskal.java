@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * 最小生成树之Kruskal(克鲁斯卡尔算法)
+ * 最小生成树之Kruskal(克鲁斯卡尔算法 K算法)
  * 1. 总是从权值最小的边开始考虑，一次考虑权值依次变大的边
  * 2. 当前的边要么进入最小生成树的集合，要么丢弃
  * 3. 如果当前的边进入最小生成树的集合中不会形成环，就要当前边，否则不要
  * 4. 考察完所有的边之后，最小生成树的集合就得到了
  * 最小生成树：保持整个图的连通性，边的权重最小
+ *
  */
 public class Kruskal {
 
@@ -31,6 +32,9 @@ public class Kruskal {
 
     /**
      * 利用并查集来处理
+     * 1. 将所有边排序，权重从小到大
+     * 2. 所有节点初始化并查集里
+     * 3. 查一次处理边，两边的点不在一个集合就合并，在一个集合了就忽略
      * @param graph
      */
     public static List<GraphEdge> create(Graph graph){
