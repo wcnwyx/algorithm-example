@@ -1,9 +1,6 @@
 package com.wcn.algorithm.unionFindSet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 并查集
@@ -25,7 +22,7 @@ public class UnionFindSet<V> {
     private Map<Node<V>, Integer> sizeMap = new HashMap<>();
 
     //初始化
-    public UnionFindSet(List<V> list) {
+    public UnionFindSet(Collection<V> list) {
         for(V v:list){
             Node<V> node = new Node<>(v);
             nodeMap.put(v, node);
