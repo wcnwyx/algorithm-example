@@ -12,6 +12,12 @@ import java.util.Queue;
  */
 public class ScanWide {
 
+    public static void main(String[] args) {
+        int[][] array = new int[][]{{1,2,0},{1,3,0},{2,3,0},{2,4,0},{3,5,0},{4,5,0}};
+        Graph graph = new Graph(array);
+        scan(graph.nodes.get(1));
+    }
+
     public static void scan(GraphNode node){
         if(node==null){
             return ;
@@ -22,7 +28,7 @@ public class ScanWide {
         hashSet.add(node);
         while(!queue.isEmpty()){
             GraphNode nodeTemp = queue.poll();
-            System.out.println(nodeTemp.value);
+            System.out.print(nodeTemp.value+" ");
 
             for(GraphNode e: nodeTemp.nexts){
                 if(!hashSet.contains(e)){

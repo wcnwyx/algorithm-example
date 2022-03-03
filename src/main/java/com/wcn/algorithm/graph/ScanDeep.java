@@ -1,5 +1,6 @@
 package com.wcn.algorithm.graph;
 
+import com.wcn.algorithm.graph.base.Graph;
 import com.wcn.algorithm.graph.base.GraphNode;
 
 import java.util.HashSet;
@@ -9,6 +10,12 @@ import java.util.Stack;
  * 图的深度优先遍历
  */
 public class ScanDeep {
+    public static void main(String[] args) {
+        int[][] array = new int[][]{{1,2,0},{1,3,0},{2,3,0},{2,4,0},{3,5,0},{4,5,0}};
+        Graph graph = new Graph(array);
+        scan(graph.nodes.get(1));
+    }
+
     public static void scan(GraphNode node){
         if(node==null){
             return ;
@@ -22,7 +29,6 @@ public class ScanDeep {
         System.out.println(node.value);
         while(!stack.isEmpty()){
             GraphNode nodeTemp = stack.pop();
-            System.out.println(nodeTemp.value);
 
             for(GraphNode nodeTempNext:nodeTemp.nexts){
                 if(!hashSet.contains(nodeTempNext)){
