@@ -4,6 +4,7 @@ import java.util.Stack;
 
 /**
  * 将一个栈元素颠倒(1->2->3->4 变为 4->3->2->1)，不能使用额外的数据结构，递归实现
+ * 两层递归实现
  */
 public class StackReverse {
     public static void main(String[] args) {
