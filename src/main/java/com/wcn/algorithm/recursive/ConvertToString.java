@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 从左往右的尝试模型
+ * 从左往右的尝试模型1
  * 规定1和A对应、2和B对应、3和C对应。。。。
  * 那么一个数字字符串比如“111“就可以转化为 "AAA"、"KA"、"AK"
  * 给定一个只有数字组成的字符串str，返回有多少种转化结果
@@ -12,7 +12,7 @@ import java.util.List;
 public class ConvertToString {
 
     public static void main(String[] args) {
-        String num = "111";
+        String num = "11111";
         List<String> result = new ArrayList<>();
         process(num, "", result);
         for(String s:result){
