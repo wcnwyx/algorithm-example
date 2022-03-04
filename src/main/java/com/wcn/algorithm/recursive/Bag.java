@@ -28,8 +28,10 @@ public class Bag {
         if(index==weights.length){
             //没有物品了
             if(weightAlready>bag){
+                //超重了就放弃该方案
                 return 0;
             }else{
+                //有效方案返回
                 return valuesAlready;
             }
         }
